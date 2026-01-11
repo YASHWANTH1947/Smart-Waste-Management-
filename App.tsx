@@ -5,7 +5,6 @@ import { INITIAL_BINS, PITAMPURA_CENTER } from './constants';
 import { getRoutePath, calculateMetrics } from './services/routingService';
 import MapContainer from './components/MapContainer';
 import MetricsTable from './components/MetricsTable';
-import MobileMock from './components/MobileMock';
 import { Trash2, ShieldCheck, Map as MapIcon, Upload, Info, RefreshCw, User } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -129,7 +128,7 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Footer Info - Updated with Project Creator and Purpose */}
+        {/* Footer Info */}
         <div className="p-6 bg-gray-50 border-t border-gray-100">
           <div className="flex items-start gap-3 p-3 bg-white rounded-xl border border-gray-200">
             <div className="bg-emerald-50 p-1.5 rounded-lg">
@@ -167,11 +166,6 @@ const App: React.FC = () => {
           mode={mode} 
           onBinClick={setSelectedBin}
         />
-
-        {/* Overlay Mobile Mock (Right Side) */}
-        <div className="absolute top-1/2 -translate-y-1/2 right-8 z-[1000]">
-          <MobileMock activeBin={selectedBin || routes.active[0]} />
-        </div>
       </main>
     </div>
   );
