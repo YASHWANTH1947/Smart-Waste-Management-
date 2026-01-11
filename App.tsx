@@ -1,19 +1,17 @@
 
-import React, { useState, useMemo, useCallback } from 'react';
-import { Bin, RouteMode, RouteMetrics } from './types';
+import React, { useState, useMemo } from 'react';
+import { Bin, RouteMode } from './types';
 import { INITIAL_BINS, PITAMPURA_CENTER } from './constants';
 import { getRoutePath, calculateMetrics } from './services/routingService';
 import MapContainer from './components/MapContainer';
 import MetricsTable from './components/MetricsTable';
-import { Trash2, ShieldCheck, Map as MapIcon, Upload, Info, RefreshCw, User } from 'lucide-react';
+import { Trash2, ShieldCheck, Map as MapIcon, Upload, RefreshCw, User } from 'lucide-react';
 
 const App: React.FC = () => {
   const [bins, setBins] = useState<Bin[]>(INITIAL_BINS);
   const [mode, setMode] = useState<RouteMode>(RouteMode.OPTIMIZED);
-  const [selectedBin, setSelectedBin] = useState<Bin | undefined>();
-  const [isUploading, setIsUploading] = useState(false);
+  const [, setSelectedBin] = useState<Bin | undefined>();
 
-  // Memoize routes and metrics for performance
   const routes = useMemo(() => {
     const fixedPath = getRoutePath(bins, RouteMode.FIXED, { lat: PITAMPURA_CENTER[0], lng: PITAMPURA_CENTER[1] });
     const optPath = getRoutePath(bins, RouteMode.OPTIMIZED, { lat: PITAMPURA_CENTER[0], lng: PITAMPURA_CENTER[1] });
@@ -34,7 +32,6 @@ const App: React.FC = () => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    setIsUploading(true);
     const reader = new FileReader();
     reader.onload = (event) => {
       try {
@@ -44,8 +41,6 @@ const App: React.FC = () => {
         }
       } catch (err) {
         alert('Invalid JSON file format');
-      } finally {
-        setIsUploading(false);
       }
     };
     reader.readAsText(file);
