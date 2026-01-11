@@ -1,0 +1,8 @@
+{
+  "name": "EcoRoute: Smart Waste Management System",
+  "description": "An interactive dashboard comparing fixed vs. AI-optimized waste collection routes for urban planning and sustainability research.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
